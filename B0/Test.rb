@@ -35,7 +35,7 @@ def create_stus_by_rand(num)
     gender = rand(2).to_i == 0?"男":"女"
     age = rand(6).to_i + 15
     #创建一个学生对象
-    stu = Student.new(id,name,gender,age)
+    stu = Student.new(id, name, gender, age)
     #将此学生对象添加到数组中
 	array_stu.push(stu)
   end
@@ -53,7 +53,7 @@ def create_stus_from_file(filename)
   IO.foreach(filename) do |str_stu|
     if str_stu[0] != "#"
       list_inf = str_stu.split("\t")
-      stu = Student.new(list_inf[0].to_i,list_inf[1],list_inf[2],list_inf[3].to_i)
+      stu = Student.new(list_inf[0].to_i, list_inf[1], list_inf[2], list_inf[3].to_i)
       array_stu.push(stu)
     end
   end
@@ -69,8 +69,8 @@ def output_to_std(array_stu)
 end
 
 #将所有学生信息存储到磁盘文件中
-def output_to_file(array_stu,filename)
-  file = File.new(filename,"w")
+def output_to_file(array_stu, filename)
+  file = File.new(filename, "w")
   file.write("#学号\t\t姓名\t性别\t年龄\n")
   array_stu.each do |stu|
 	str_stu = stu.to_string() + "\n"
@@ -83,15 +83,15 @@ end
 array_stu = create_stus_from_file("student_inf.txt")
 if array_stu == nil
   array_stu = create_stus_by_rand(100)
-  output_to_file(array_stu,"student_inf.txt")
+  output_to_file(array_stu, "student_inf.txt")
 end
 
 #输出创建的所有学生信息
 output_to_std(array_stu)
 
 #将产生的学生信息按姓名排序然后输出到磁盘文件中(若文件名相同则覆盖之前的文件)
-ArrayTool.sort!(array_stu,CompareWithName.new)
-output_to_file(array_stu,"student_inf.txt")
+ArrayTool.sort!(array_stu, CompareWithName.new)
+output_to_file(array_stu, "student_inf.txt")
 
 #将排序后的学生信息依次打印到标准输出设备
 output_to_std(array_stu)
