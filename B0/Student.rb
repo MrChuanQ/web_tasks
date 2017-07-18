@@ -2,7 +2,7 @@ $LOAD_PATH<<'.'
 class Student
   attr_accessor:id,:name,:gender,:age	#通过访问器实现成员变量的set、get功能
 
-  def initialize(id,name,gender,age)
+  def initialize(id, name, gender, age)
 	@id = id	#id:学号
 	@name = name	#@name:姓名
 	@gender = gender	#@gender:性别
