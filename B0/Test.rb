@@ -16,20 +16,20 @@ def create_stus_by_rand(num)
     upper_case_letters = ('A'..'Z').to_a
     #随机产生名
     (1..6).each do |n|
-	  if n == 1
+      if n == 1
         name<<upper_case_letters[rand(26).to_i]
-	  else
-	    name<<lower_case_letters[rand(26).to_i]
-	  end
+      else
+        name<<lower_case_letters[rand(26).to_i]
+      end
     end
     name<<" "
     #随机产生姓
     (1..6).each do |n|
-	  if n == 1
-	    name<<upper_case_letters[rand(26).to_i]
-	  else
-	    name<<lower_case_letters[rand(26).to_i]
-	  end	
+      if n == 1
+        name<<upper_case_letters[rand(26).to_i]
+      else
+        name<<lower_case_letters[rand(26).to_i]
+      end	
     end
 
     gender = rand(2).to_i == 0?"男":"女"
@@ -37,7 +37,7 @@ def create_stus_by_rand(num)
     #创建一个学生对象
     stu = Student.new(id, name, gender, age)
     #将此学生对象添加到数组中
-	array_stu.push(stu)
+    array_stu.push(stu)
   end
   #返回生成的学生数组
   return array_stu
@@ -46,7 +46,7 @@ end
 #从文件读取并生成学生信息
 def create_stus_from_file(filename)
   if !File.exist?(filename)	#磁盘文件不存在
-	return nil
+    return nil
   end
   #磁盘文件存在
   array_stu = Array.new()
@@ -64,7 +64,7 @@ end
 def output_to_std(array_stu)
   puts "#学号\t\t姓名\t性别\t年龄"
   array_stu.each do |stu|
-	puts stu.to_string()
+    puts stu.to_string()
   end
 end
 
@@ -73,8 +73,8 @@ def output_to_file(array_stu, filename)
   file = File.new(filename, "w")
   file.write("#学号\t\t姓名\t性别\t年龄\n")
   array_stu.each do |stu|
-	str_stu = stu.to_string() + "\n"
-	file.write(str_stu)
+    str_stu = stu.to_string() + "\n"
+    file.write(str_stu)
   end
   file.close()
 end
