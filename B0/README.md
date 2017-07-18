@@ -10,4 +10,4 @@ Comparator.rb:比较器模块。
 	CompareWithAge：继承Comparator,实现compare方法，学生信息通过age进行比较
 	CompareWithName：继承Comparator,实现compare方法，学生信息通过name进行比较
 
-Student.rb；学生类的定义。定义了一个带4个参数的构造函数，各个成员变量的set和get方法，以及返回学生信息字符串形式的to_string方法
+Student.rb；学生类的定义。定义了一个带4个参数的构造函数，通过访问器实现成员变量的set、get功能，以及返回学生信息字符串形式的to_string方法
