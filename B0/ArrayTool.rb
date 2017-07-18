@@ -2,7 +2,7 @@ module ArrayTool
   #将所有指定元素添加到指定 collection 中
   def ArrayTool.add(array, *objs)
     objs.each do |obj|
-	  array.push(obj)
+      array.push(obj)
     end
   end
 
