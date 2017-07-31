@@ -12,13 +12,17 @@
 		</tr>
 	
 	<%
-		filter = params[:filter]
+		filter = params[:filter].strip
+
 		filter = filter.to_i==0? filter : filter.to_i
+		if filter == ""
+		  filter = nil
+		end
 		manager = MessageManager.get_instance()
 		inquiry_mess = manager.inquire(filter)
 
 		unless inquiry_mess.is_a?(Message) || inquiry_mess.size != 0
-		  halt(401,"未找到对应的留言！")	
+		  halt(401,"未找到对应的留言！<br><A href=\'/\'>前往首页</A>")	
 		end
 		if inquiry_mess.is_a?(Message)  %>
 		  <tr>
