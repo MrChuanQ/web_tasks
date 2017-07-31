@@ -1,4 +1,8 @@
 <HTML><body>
+	<p align="right"><font size=2>
+	<A href='/user_page'><%= session[:username] %><A> <A href='/logout'>注销<A>
+	</font></p>
+
 	<font size=3 color=cyan>留言板</font>
 	<hr><!--水平分隔线-->
 	<!--显示留言消息-->
@@ -32,8 +36,8 @@
 	<hr>
 
 	<!--查询区-->
+	<br><font size=3 color=blue>查询留言：</font>
 	<hr>
-	<font size=3 color=blue>查询留言：</font>
 	<form action="/inquire_message" method="get">
 		<input type="text" name="filter" value="输入id或author" />
 		<input type="submit" value="查询">
@@ -41,6 +45,7 @@
 	<hr>
 
 	<!--留言区-->
+	<br><font size=3 color=#66ff00>留言：</font>
 	<form action="/send_message" method="post">
 		<%
 			manager = MessageManager.get_instance()
@@ -53,7 +58,7 @@
 			  last_id = 0
 			end
 			next_id = last_id + 1
-			author = settings.username
+			author = session[:username]
 			time = Time.now.to_i
 		%>
 		<input type="hidden" name="id" value="<%= next_id %>" />
