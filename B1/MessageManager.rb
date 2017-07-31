@@ -62,7 +62,6 @@ class MessageManager
 	return author_mess
   end
 
-  #为什么这三行代码放在最前面，会使@mess为nil
   @@manager = MessageManager.new
   private_class_method :new
   attr_accessor :mess
