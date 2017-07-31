@@ -1,7 +1,27 @@
-<HTML>
+<HTML><body>
 <form action="/login" method="post">  
   Name: <input type="text" name="username" />  
   Password: <input type="password" name="password" />  
   <input type="submit" value="登录" />  
 </form>
-</HTML>
+
+<hr><br>
+<table border><caption><i><font color="#FF00AA">可用的测试数据</font></i></caption>
+	<tr>
+		<th>用户名</th>
+		<th>密码</th>
+	</tr>
+		<%
+		IO.foreach("user_data.txt") do |user|
+		  if user[0] != "#"
+		    list_inf = user.split("\t")
+		%>
+			<tr>
+				<td><%= list_inf[0] %></td>
+				<td><%= list_inf[1] %></td>
+			</tr>
+          <%end%>
+        <%end%>
+	
+</table>
+</body></HTML>
