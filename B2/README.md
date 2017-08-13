@@ -2,9 +2,13 @@
 几组可用的用户（已在程序中写入数据库）
 
 #ID     密码
+
 1000	sinatra
+
 1001	45ds556
+
 1002	sad4676
+
 1003	fafasfa
 
 注：数据库使用的是MySQL，密码写在代码中了:)。改密码需要修改两个文件（MessageManager.rb和UserManager.rb），每个文件需要改两处。使用时需要先创建User和Message两个数据库(create database User/Message;)，对于表程序自己会创建。
