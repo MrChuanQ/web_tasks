@@ -35,6 +35,13 @@ end
 
 #添加元素
 if e == nil
+=begin
+#用户名 密码
+frank	sinatra
+jack	45ds556
+tom	sad4676
+lucy	fafasfa
+=end
 	sql_add_value =[
 		"INSERT INTO users VALUES ('1000', 'frank', '0efe415c937f6858550a6378f4f3f374');",
 		"INSERT INTO users VALUES ('1001', 'jack', '6760a7c226284bd15ddcf92bfd50428d');",
@@ -98,15 +105,5 @@ class UserManager
 		end
   end
 
-=begin
-p User.create(userid: "1506010321", username: "Tom", password: "110")
-
-p User.create(userid: "1506010218", username: "Lucy", password: "120").valid?
-
-p User.create(userid: "1506010318", username: "Jack", password: "189").valid?
-
-p User.find_by(userid: "1506010218").destroy
-exit
-=end  
     private_class_method :new
 end
