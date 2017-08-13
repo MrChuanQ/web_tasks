@@ -37,10 +37,10 @@ end
 if e == nil
 =begin
 #用户名 密码
-frank	sinatra
-jack	45ds556
-tom	sad4676
-lucy	fafasfa
+1000	sinatra
+1001	45ds556
+1002	sad4676
+1003	fafasfa
 =end
 	sql_add_value =[
 		"INSERT INTO users VALUES ('1000', 'frank', '0efe415c937f6858550a6378f4f3f374');",
