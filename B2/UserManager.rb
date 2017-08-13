@@ -36,7 +36,7 @@ end
 #添加元素
 if e == nil
 =begin
-#用户名 密码
+#用户ID 密码
 1000	sinatra
 1001	45ds556
 1002	sad4676
