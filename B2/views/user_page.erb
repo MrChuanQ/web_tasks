@@ -9,7 +9,7 @@
   <form action="/modify_password" method="post">
     <br>输入原密码：
     <input type="password" name="old_password">
-	输入新密码：<input type="password" name="new_password">
+  输入新密码：<input type="password" name="new_password">
     <input type="submit" value="确定">
   </form>
   <hr>
@@ -18,24 +18,24 @@
   <br><font size=3 color=blue>个人信息：</font>
   <hr>
   <table border>
-	<tr>
-		<th>用户ID</th>
-		<th>用户名</th>
-	</tr>
-	<tr>
-		<td><%= session[:id] %></td>
-		<td><%= session[:username] %></td>
-	</tr>
+  <tr>
+  <th>用户ID</th>
+  <th>用户名</th>
+  </tr>
+  <tr>
+  <td><%= session[:id] %></td>
+  <td><%= session[:username] %></td>
+  </tr>
   </table>
   <hr>
 
-	<!--提交的留言列表-->
-	<br><font size=3 color=#66ff00>提交的留言列表：</font>
-	<hr>
-	<p align="center"><form action="/inquire_message" method="get">
-	  <input type="hidden" name="filter" value="<%= session[:username] %>">
-	  <input type="submit" value="查看提交的留言列表">
-	</form></p>
-	<hr>
-	
+  <!--提交的留言列表-->
+  <br><font size=3 color=#66ff00>提交的留言列表：</font>
+  <hr>
+  <p align="center"><form action="/inquire_message" method="get">
+    <input type="hidden" name="filter" value="<%= session[:username] %>">
+    <input type="submit" value="查看提交的留言列表">
+  </form></p>
+  <hr>
+  
 </body></HTML>
