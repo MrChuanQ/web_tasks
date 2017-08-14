@@ -1,71 +1,60 @@
 <HTML><body>
-	<p align="right"><font size=2>
-	<A href='/user_page'><%= session[:username] %><A> <A href='/logout'>注销<A>
-	</font></p>
+  <p align="right"><font size=2>
+  <A href='/user_page'><%= session[:username] %><A> <A href='/logout'>注销<A>
+  </font></p>
 
-	<font size=3 color=cyan>留言板</font>
-	<hr><!--水平分隔线-->
-	<!--显示留言消息-->
-	<table border>
-		<tr>
-		<th>ID</th>
-		<th>留言人</th>
-		<th>留言人ID</th>
-		<th>时间</th>
-		<th>留言内容</th>
-		<th>操作</th>
-		</tr>
-	<%
-		if @mess != nil
-		  @mess.each do |m|
-	%>	
-		<tr>
-			<td><%= m.id %></td>
-			<td><%= m.author %></td>
-			<td><%= m.user_id %></td>
-			<td><%= m.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-			<td><%= m.content %></td>
-			<td>
-				<form action="/delete_message" method="post">
-					<input type="hidden" name="id" value="<%= m.id %>" />
-					<input type="submit" value="删除" />
-				</form>
-			</td>
-		</tr>
-	<% end %>
-	<% end %>
-	</table>
-	<hr>
+  <font size=3 color=cyan>留言板</font>
+  <hr><!--水平分隔线-->
+  <!--显示留言消息-->
+  <table border>
+  <tr>
+  <th>ID</th>
+  <th>留言人</th>
+  <th>留言人ID</th>
+  <th>时间</th>
+  <th>留言内容</th>
+  <th>操作</th>
+  </tr>
+  <%
+  if @mess != nil
+    @mess.each do |m|
+  %>  
+  <tr>
+    <td><%= m.id %></td>
+    <td><%= m.author %></td>
+    <td><%= m.user_id %></td>
+    <td><%= m.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+    <td><%= m.content %></td>
+    <td>
+    <form action="/delete_message" method="post">
+      <input type="hidden" name="id" value="<%= m.id %>" />
+      <input type="submit" value="删除" />
+    </form>
+    </td>
+  </tr>
+  <% end %>
+  <% end %>
+  </table>
+  <hr>
 
-	<!--查询区-->
-	<br><font size=3 color=blue>查询留言：</font>
-	<hr>
-	<form action="/inquire_message" method="get">
-		<input type="text" name="filter" value="输入ID或留言人" />
-		<input type="submit" value="查询">
-	</form>
-	<hr>
+  <!--查询区-->
+  <br><font size=3 color=blue>查询留言：</font>
+  <hr>
+  <form action="/inquire_message" method="get">
+  <input type="text" name="filter" value="输入留言ID或留言人" />
+  <input type="submit" value="查询">
+  </form>
+  <hr>
 
-	<!--留言区-->
-	<br><font size=3 color=#66ff00>留言：</font>
-	<form action="/send_message" method="post">
-		<%
-			#manager = MessageManager.get_instance()
-			#mess = manager.mess
-			#last_message = mess.last
-			
-			#if(last_message != nil)
-			 # last_id = last_message.id
-			#else
-			  #last_id = 0
-			#end
-			#next_id = last_id + 1
-			#author = session[:username]
-			time = Time.now.to_i
-		%>
+  <!--留言区-->
+  <br><font size=3 color=#66ff00>留言：</font>
+  <form action="/send_message" method="post">
+  <%
+    time = Time.now.to_i
+  %>
 
-		<input type="hidden" name="time" value="<%= time %>" />
-		<textArea name="content" rows="5" cols="80" />输入留言信息</textArea>
-		<br><input type="submit" value="上传消息" />
-	</form>
+  <input type="hidden" name="time" value="<%= time %>" />
+  <textArea name="content" rows="5" cols="80" />输入留言信息</textArea>
+  <br><input type="submit" value="上传消息" />
+  </form>
 </body></HTML>
