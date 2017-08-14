@@ -1,0 +1,4 @@
+<database name = "MySQL">
+  <username>root</username>
+  <password>1234</password>
+</database>
