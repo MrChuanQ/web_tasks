@@ -2,7 +2,7 @@
 表：文章表(articles)、留言表(comments)、反馈表(feedbacks)、用户表(users)、管理员账户表(admins)
  1.     articles(文章表)
         字段名     类型                      
-        title     text                      
+        title     string                      
         text      text                      
         checked   boolean                   
         admin_id  int
