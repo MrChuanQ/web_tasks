@@ -1,5 +1,5 @@
 数据库：blog
-表：文章表(articles)、留言表(comments)、反馈表(feedbacks)、用户表(users)、管理员账户表(admins)
+表：文章表(articles)、留言表(comments)、反馈表(feedbacks)、管理员账户表(admins)
  1.     articles(文章表)
         字段名     类型                      
         title     string                      
@@ -15,6 +15,7 @@
   文章表包含的字段为文章的标题(title,内容长度不小于5)，正文(text,内容长度不小于10),是否通过审核(checked),管理员ID(admin_id)，文章发表者ID(user_id)和一些其他字段。
   
  2.     留言表(comments)
+ 
         字段名    类型
         name       string
         email      string
@@ -32,6 +33,7 @@
         email       string
         content     string
         checked     boolean
+        article_id  int
         comment_id  int
         user_id     int
         admint_id   int
@@ -57,8 +59,9 @@
   
   
   问题：
-  比如自动生成的用户模型为 class User < ApplicationRecord
-  那么如何生成管理员模型(继承自User)，而且相同的字段不用重复填写
+  1.比如自动生成的用户模型为 class User < ApplicationRecord
+  那么如何生成管理员模型(继承自User)，而且相同的字段不用重复填写.
+
   
   
   
