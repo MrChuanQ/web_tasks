@@ -1,0 +1,50 @@
+<p align="right"><font size=2>
+ <% if session[:id] != nil %>
+    <%= link_to session[:adminname], admin_path(session[:id]) %> <A href='/main/logout'>注销<A>
+  <% else %>
+     <A href='/main/login'>管理员登录<A> 
+  <% end %>
+</font></p>
+
+<h1>Listing Articles</h1>
+<% if session[:id] %>
+  <br><%= link_to 'New Article', new_admin_article_path(session[:id]) %>
+<% end %>
+
+&nbsp&nbsp&nbsp&nbsp
+<%= link_to 'New Feedback', new_feedback_path %>
+
+&nbsp&nbsp&nbsp&nbsp
+<%= link_to 'Listing Feedbacks', feedbacks_path %>
+
+<% if @articles %>
+  <%= will_paginate %>
+
+<ul class="articles">
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Text Summary</th>
+  </tr>
+  
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.id %></td>
+      <td><%= article.title %></td>
+      <td><%= raw article.text[0,25] + "......" %></td>
+      <!--<td>%= article.checked %</td>-->
+      <td><%= link_to 'Show', admin_article_path(article.admin, article) %></td>
+      <% if session[:id] %>
+        <td><%= link_to 'Edit', edit_admin_article_path(article.admin, article) %></td>
+        <td><%= link_to 'Remove', admin_article_path(article.admin, article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+     </tr>
+  <% end %>
+</table>
+
+</ul>
+
+  <%= will_paginate %>
+<% end %>

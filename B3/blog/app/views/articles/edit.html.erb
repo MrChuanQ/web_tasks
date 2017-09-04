@@ -1,0 +1,37 @@
+<p align="right"><font size=2>
+  <%= link_to session[:adminname], admin_path %> <A href='/main/logout'>注销<A>
+</font></p>
+
+<h1>Edit Article</h1>
+
+<%= form_for(@article, url: admin_article_path(@article.admin, @article)) do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@article.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= f.label :text %><br>
+    <%= f.kindeditor :text %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
+
+<%= link_to 'Back to Articles', admin_articles_path(@article.admin) %>

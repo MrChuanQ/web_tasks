@@ -1,0 +1,33 @@
+<p align="right"><font size=2>
+ <% if session[:id] != nil %>
+    <%= link_to session[:adminname], admin_path(session[:id]) %> <A href='/main/logout'>注销<A>
+  <% else %>
+     <A href='/main/login'>管理员登录<A> 
+  <% end %>
+</font></p>
+
+<h1>Show Article</h1>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= raw @article.text %>
+</p>
+
+<% if session[:id] %>
+  <%= link_to 'Edit', edit_admin_article_path(@article.admin, @article) %>
+<% end %>
+&nbsp&nbsp&nbsp&nbsp
+<%= link_to 'Back to Articles', admin_articles_path(@article.admin) %>
+
+<br>
+<%= link_to 'New Comment', new_admin_article_comment_path(@article.admin, @article) %>
+<!--(@article.admin, @article,  @article.comments.build)-->
+&nbsp&nbsp&nbsp&nbsp
+<%= link_to 'Listing Comments', admin_article_comments_path(@article.admin, @article) %>
+
+

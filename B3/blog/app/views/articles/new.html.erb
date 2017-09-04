@@ -1,0 +1,42 @@
+<p align="right"><font size=2>
+ <% if session[:id] != nil %>
+    <%= link_to session[:adminname], admin_path(session[:id]) %> <A href='/main/logout'>注销<A>
+  <% else %>
+     <A href='/main/login'>管理员登录<A> 
+  <% end %>
+</font></p>
+
+<h1>New Article</h1>
+<%= form_for :article, url: admin_articles_path(session[:id]) do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@article.errors.count, "error") %>
+        prohibited this article from being saved:
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= f.label :text %><br>
+    <%= f.kindeditor :text %>
+
+  </p>
+  
+    <%= f.hidden_field(:admin_id, value: session[:id]) %>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+<%= link_to 'Back to Articles', admin_articles_path(session[:id]) %>

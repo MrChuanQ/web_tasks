@@ -1,0 +1,38 @@
+<p align="right"><font size=2>
+  <%= link_to session[:adminname], admin_path(session[:id]) %> <A href='/main/logout'>注销<A>
+</font></p>
+
+<h1>Listing Admins</h1>
+
+<%= link_to 'Back to Admin', admin_path(session[:id]) %>
+
+<%= will_paginate %>
+<ul class="admins">
+<table>
+  <tr>
+    <th>管理员ID</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+  
+  <% @admins.each do |admin| %>
+    <tr>
+      <td><%= admin.id %></td>
+      <td><%= admin.name %></td>
+      <td><%= admin.email %></td>
+      <!--<td>%= admin.checked %</td>-->
+      <!--不能有否则就是操作别人的账号了！
+      <td>%= link_to 'Show', admin_path(admin) %</td
+      
+      % if admin_id %
+        <td>%= link_to 'Edit', edit_admin_path(admin) %</td>
+        <td>%= link_to 'Remove', admin_path(admin), method: :delete, data: { confirm: 'Are you sure?' } %</td>
+      % end %
+      -->
+    </tr>
+  <% end %>
+</table>
+</ul>
+
+<%= will_paginate %>
+      

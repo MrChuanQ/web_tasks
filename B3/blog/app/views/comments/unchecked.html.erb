@@ -1,0 +1,42 @@
+<p align="right"><font size=2>
+  <%= link_to session[:adminname], admin_path(session[:id]) %> <A href='/main/logout'>注销<A>
+</font></p>
+
+<h1>Listing Unchecked Comments</h1>
+
+<%= link_to 'Back to Comments', admin_article_comments_path(@article.admin, @article) %>
+
+&nbsp&nbsp&nbsp&nbsp
+<%= link_to 'Back to Article', admin_article_path(@article.admin, @article) %>
+
+<% if @comments %>
+  <%= will_paginate %>
+
+<ul class="comments_unckecked">
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Content Summary</th>
+  </tr>
+  
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.name %></td>
+      <td><%= comment.email %></td>
+      <td><%= raw comment.content[0,25] + "......" %></td>
+      <!--<td>%= comment.checked %</td>-->
+      <td><%= link_to 'Show', admin_article_comment_path(@article.admin, @article, comment) %></td>
+      <% if session[:id] %>
+        <td><%= link_to 'Edit', edit_admin_article_comment_path(@article.admin, @article, comment) %></td>
+        <td><%= link_to 'Remove', admin_article_comment_path(@article.admin, @article, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+     </tr>
+  <% end %>
+</table>
+
+</ul>
+
+  <%= will_paginate %>
+<% end %>

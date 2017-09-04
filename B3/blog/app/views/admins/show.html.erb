@@ -1,0 +1,36 @@
+<p align="right"><font size=2>
+  <%= link_to session[:adminname], admin_path(@admin) %> <A href='/main/logout'>注销<A>
+</font></p>
+
+<h1>Show Admin</h1>
+
+<%= link_to "Listing Admins", admins_path %>
+&nbsp&nbsp&nbsp
+<%= link_to "Listing Feedbacks", feedbacks_path %>
+
+<p>
+  <strong>管理员ID:</strong>
+  <%= @admin.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @admin.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @admin.email %>
+</p>
+
+
+<p>
+
+<%= link_to 'Edit', edit_admin_path(@admin) %>
+
+&nbsp&nbsp&nbsp&nbsp
+<%= link_to 'Remove', admin_path(@admin), method: :delete, data: { confirm: 'Are you sure to delete your account?this operation cannot be withdrawn!' } %>
+
+<br><br><%= link_to 'Back to Articles', admin_articles_path(0) %>
+
+

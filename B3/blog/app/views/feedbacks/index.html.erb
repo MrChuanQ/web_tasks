@@ -1,0 +1,51 @@
+<p align="right"><font size=2>
+ <% if session[:id] != nil %>
+    <%= link_to session[:adminname], admin_path(session[:id]) %> <A href='/main/logout'>注销<A>
+  <% else %>
+     <A href='/main/login'>管理员登录<A> 
+  <% end %>
+</font></p>
+
+<h1>Listing Feedbacks</h1>
+
+<%= link_to 'New Feedback', new_feedback_path %>
+
+<% if session[:id] %>
+  &nbsp&nbsp&nbsp&nbsp
+  <%= link_to 'Listing Unchecked Feedbacks', feedbacks_unchecked_path %>
+<% end %>
+
+&nbsp&nbsp&nbsp&nbsp
+<%= link_to 'Back to Articles', admin_articles_path(session[:id]) %>
+
+<% if @feedbacks %>
+  <%= will_paginate %>
+
+<ul class="feedbacks">
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Content Summary</th>
+  </tr>
+  
+  <% @feedbacks.each do |feedback| %>
+    <tr>
+      <td><%= feedback.name %></td>
+      <td><%= feedback.email %></td>
+      <td><%= raw feedback.content[0,25] + "......" %></td>
+      <!--<td>%= feedback.checked %</td>-->
+      <td><%= link_to 'Show', feedback_path(feedback) %></td>
+      <% if session[:id] %>
+        <td><%= link_to 'Edit', edit_feedback_path(feedback) %></td>
+        <td><%= link_to 'Remove', feedback_path(feedback), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+     </tr>
+  <% end %>
+</table>
+
+</ul>
+
+  <%= will_paginate %>
+<% end %>

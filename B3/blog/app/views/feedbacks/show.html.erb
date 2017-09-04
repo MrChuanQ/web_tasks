@@ -1,0 +1,52 @@
+<p align="right"><font size=2>
+ <% if session[:id] != nil %>
+    <%= link_to session[:adminname], admin_path(session[:id]) %> <A href='/main/logout'>注销<A>
+  <% else %>
+     <A href='/main/login'>管理员登录<A> 
+  <% end %>
+</font></p>
+
+<h1>Show Feedback</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @feedback.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @feedback.email %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= raw @feedback.content %>
+</p>
+<p>
+<% if session[:id] %>
+  <% if !@feedback.checked %>
+    <%= form_for(@feedback) do |f| %>
+      <%= f.hidden_field :checked, value: 1 %>
+      &nbsp&nbsp&nbsp 
+      <%= f.button "Checked Ok" %> (click to push this feedback)
+    <% end %>
+  <% else %>
+    (this feedback has checked!)<br>
+  <% end %>
+  
+  &nbsp&nbsp&nbsp&nbsp
+  <%= link_to 'Edit', edit_feedback_path(@feedback) %>
+  &nbsp&nbsp&nbsp&nbsp
+  <%= link_to 'Remove', feedback_path(@feedback), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<p>
+  <%= link_to 'Back to Feedbacks', feedbacks_path %>
+</p>
+
+<% if session[:id] %>
+  <p>
+    <%= link_to 'Back to Unchecked Feedbacks', feedbacks_unchecked_path %>
+  </p>
+<% end %>
+</p>

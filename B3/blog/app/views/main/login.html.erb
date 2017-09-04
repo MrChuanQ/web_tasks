@@ -1,0 +1,14 @@
+<HTML><body>
+<p align="center">
+  <font size="6">Login</font>
+</p>
+<form action="/main/login2" method="post">
+<p align="center">
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:
+  <input type="text" name="id" />  
+  <br>Password: <input type="password" name="password" />  
+  <br><br><input type="submit" value="登录" /> <A href='/main/signup'>注册</A>
+  <br><%= link_to 'Listing Articles', admin_articles_path(0) %>
+</p>
+</form>
+</body></HTML>

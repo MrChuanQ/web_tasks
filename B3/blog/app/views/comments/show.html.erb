@@ -1,0 +1,52 @@
+<p align="right"><font size=2>
+ <% if session[:id] != nil %>
+    <%= link_to session[:adminname], admin_path(session[:id]) %> <A href='/main/logout'>注销<A>
+  <% else %>
+     <A href='/main/login'>管理员登录<A> 
+  <% end %>
+</font></p>
+
+<h1>Show Comment</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @comment.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @comment.email %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= raw @comment.content %>
+</p>
+<p>
+<% if session[:id] %>
+  <% if !@comment.checked %>
+    <%= form_for(@comment, url: admin_article_comment_path(@article.admin, @article,  @comment)) do |f| %>
+      <%= f.hidden_field :checked, value: true %>
+      &nbsp&nbsp&nbsp 
+      <%= f.button "Checked Ok" %> (click to push this comment)
+    <% end %>
+  <% else %>
+    (this comment has checked!)<br>
+  <% end %>
+  
+  &nbsp&nbsp&nbsp&nbsp
+  <%= link_to 'Edit', edit_admin_article_comment_path(@article.admin, @article, @comment) %>
+  &nbsp&nbsp&nbsp&nbsp
+  <%= link_to 'Remove', admin_article_comment_path(@article.admin, @article, @comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<p>
+  <%= link_to 'Back to Comments', admin_article_comments_path(@article.admin, @article) %>
+</p>
+
+<% if session[:id] %>
+  <p>
+    <%= link_to 'Back to Unchecked Comments', admin_article_comments_unchecked_path(@article.admin, @article) %>
+  </p>
+<% end %>
+</p>
