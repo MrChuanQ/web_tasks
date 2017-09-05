@@ -88,9 +88,14 @@ articles_controller中的index负责列出一类文章的简短信息，点击�
 另外实现部分：
 1.文章的内容支持富文本编辑（使用rails_kindeditor插件）
 2.账户密码会通过加密后再存储到数据库，登录时同样通过MD5加密用户输入的密码（通过JavaScript加密提交的表单）
-3.提供分页功能(文章分页、留言分页、后台系统中各个列表的分页)。但是会降低效率，如查找一篇文章的评论>@comments = @article.comments.where(checked: true)  比  >@comments = Comment.paginate(page: params[:page]).where(article_id:  @article.id, checked: true)效率高
+3.提供分页功能(文章分页、留言分页、后台系统中各个列表的分页)。但是会降低效率，如查找一篇文章的评论
+>@comments = @article.comments.where(checked: true)
+比
+>@comments = Comment.paginate(page: params[:page]).where(article_id:  @article.id, checked: true)
+效率高
 
-4.会检查提交的内容中有没有包含HTML内容(用户留言和反馈)，用户只能提交纯文本内容，如果出现HTML转义后显示 ><%= raw ... %>
+4.会检查提交的内容中有没有包含HTML内容(用户留言和反馈)，用户只能提交纯文本内容，如果出现HTML转义后显示
+><%= raw ... %>
 
 未实现部分:) ：
 1.前台系统中，为用户提供按月份和分类查看文章
